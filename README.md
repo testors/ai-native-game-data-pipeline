@@ -5,13 +5,13 @@
 
 ## 2. 데이터 분류 및 저장소 이원화 (Data Bifurcation)
 
-### 2.1 비정형/관계형 텍스트 데이터 (Narrative & System Design)
+### 2.1 기획서 (비정형/관계형 텍스트 데이터 - Narrative & System Design)
 * **저장소:** Outline (또는 동급의 Native Markdown 기반 위키)
 * **목적:** 기획 의도, 시스템 플로우차트(Mermaid.js), 로어(Lore), UI/UX 명세 저장.
 * **활용:** 구조화된 마크다운을 의미론적 청킹(Semantic Chunking)하여 RAG 벡터 데이터베이스(Milvus, Qdrant 등)로 직접 인덱싱.
 * **효과:** 시각적 암묵지 소실 방지 및 고정밀 하이브리드 검색 구현.
 
-### 2.2 정형 파라미터 데이터 (Structured Specs & Balancing)
+### 2.2 게임DB (정형 파라미터 데이터 - Structured Specs & Balancing)
 * **저장소:** 원자화(Atomized)된 JSON 파일 + Git Repository
 * **목적:** 스킬 수치, 몬스터 스탯, 아이템 테이블 등 엔진 구동용 정량 데이터.
 * **원칙:** 단일 객체(Row/Key)당 1개의 JSON 파일로 분리하여 병합 충돌(Merge Conflict) 방지 및 코드 레벨의 Diff 추적 확보.
