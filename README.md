@@ -7,11 +7,19 @@
 
 ### 2.1 기획서 (비정형/관계형 텍스트 데이터 - Narrative & System Design)
 * **저장소:** Outline (또는 동급의 Native Markdown 기반 위키)
-* **목적:** 기획 의도, 시스템 플로우차트(Mermaid.js), 로어(Lore), UI/UX 명세 저장.
+* **목적:** 기획 의도, 규칙, 시스템 플로우차트등
 * **활용:** 구조화된 마크다운을 의미론적 청킹(Semantic Chunking)하여 RAG 벡터 데이터베이스(Milvus, Qdrant 등)로 직접 인덱싱.
 * **효과:** 시각적 암묵지 소실 방지 및 고정밀 하이브리드 검색 구현.
 
-### 2.2 게임DB (정형 파라미터 데이터 - Structured Specs & Balancing)
+### 2.2 UI 시안 (UI Layout & Spatial Metadata)
+* **저장소:** Figma (REST API 기반 Node Tree 직접 연동)
+* **목적:** 게임 UI 레이아웃의 논리적 계층 구조(Hierarchy), 컴포넌트 상태 변수(Variants), 인터랙션 명세의 구조화.
+* **활용:** 1. **결정론적 노이즈 제거 (Deterministic Pruning):** Figma API로 추출한 원시 JSON 트리에서 사전 정의된 네이밍 컨벤션(예: `[DEC]`, `[CMP]`, `[TXT]`)과 정규식을 활용, 시각적 장식 노드를 코드 레벨에서 즉각 폐기(Drop)하여 토큰 폭발(Token Explosion) 방지.
+  2. **의미론적 합성 (Semantic Synthesis):** 필터링된 경량화 노드 트리를 LLM에 주입하여 공간적, 기능적 맥락이 포함된 기계 가독성(Machine-Readable) 마크다운으로 변환(Flattening).
+  3. **하이브리드 임베딩:** 추출된 상태 값(Hover, Disabled 등)을 메타데이터로 분리 적재하여 조건부 벡터 검색 최적화.
+* **효과:** 광학 인식(OCR) 및 PDF 파싱 과정에서 발생하는 레이아웃 붕괴 및 시각 정보의 의미론적 손실(Semantic Loss)을 0으로 수렴. UI 컴포넌트 단위의 고정밀 검색(Retrieval)과 AI의 아키텍처 추론 무결성 확보.
+
+### 2.3 게임DB (정형 파라미터 데이터 - Structured Specs & Balancing)
 * **저장소:** 원자화(Atomized)된 JSON 파일 + Git Repository
 * **목적:** 스킬 수치, 몬스터 스탯, 아이템 테이블 등 엔진 구동용 정량 데이터.
 * **원칙:** 단일 객체(Row/Key)당 1개의 JSON 파일로 분리하여 병합 충돌(Merge Conflict) 방지 및 코드 레벨의 Diff 추적 확보.
