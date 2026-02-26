@@ -14,7 +14,8 @@
 ### 2.2 UI 시안 (UI Layout & Spatial Metadata)
 * **저장소:** Figma (REST API 기반 Node Tree 직접 연동)
 * **목적:** 게임 UI 레이아웃의 논리적 계층 구조(Hierarchy), 컴포넌트 상태 변수(Variants), 인터랙션 명세의 구조화.
-* **활용:** 1. **결정론적 노이즈 제거 (Deterministic Pruning):** Figma API로 추출한 원시 JSON 트리에서 사전 정의된 네이밍 컨벤션(예: `[DEC]`, `[CMP]`, `[TXT]`)과 정규식을 활용, 시각적 장식 노드를 코드 레벨에서 즉각 폐기(Drop)하여 토큰 폭발(Token Explosion) 방지.
+* **활용:**
+  1. **결정론적 노이즈 제거 (Deterministic Pruning):** Figma API로 추출한 원시 JSON 트리에서 사전 정의된 네이밍 컨벤션(예: `[DEC]`, `[CMP]`, `[TXT]`)과 정규식을 활용, 시각적 장식 노드를 코드 레벨에서 즉각 폐기(Drop)하여 토큰 폭발(Token Explosion) 방지.
   2. **의미론적 합성 (Semantic Synthesis):** 필터링된 경량화 노드 트리를 LLM에 주입하여 공간적, 기능적 맥락이 포함된 기계 가독성(Machine-Readable) 마크다운으로 변환(Flattening).
   3. **하이브리드 임베딩:** 추출된 상태 값(Hover, Disabled 등)을 메타데이터로 분리 적재하여 조건부 벡터 검색 최적화.
 * **효과:** 광학 인식(OCR) 및 PDF 파싱 과정에서 발생하는 레이아웃 붕괴 및 시각 정보의 의미론적 손실(Semantic Loss)을 0으로 수렴. UI 컴포넌트 단위의 고정밀 검색(Retrieval)과 AI의 아키텍처 추론 무결성 확보.
